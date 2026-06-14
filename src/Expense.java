@@ -1,9 +1,12 @@
+import java.util.Scanner;
+
 public class Expense {
     private int id;
     private float amount;
     private String category;
     private String description;
     private String date;
+    Scanner sc=new Scanner(System.in);
 
     public Expense(int id, float amount, String category, String description, String date){
       this.id=id;
@@ -52,7 +55,9 @@ public class Expense {
                 ",date='"+date +'\''+
             '}';
     }
-    /*public static void printExpense(Expense e){
+
+
+    /*public static void viewExpense(Expense e){
         System.out.println("Expense details");
         String expenseId = String.valueOf(e.getId());
         String expenseAmount = String.valueOf(e.getAmount());
