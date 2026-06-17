@@ -48,9 +48,17 @@ public class Main {
                     continueExpenseManagement=false;
                 }
             } else if (optionChosen == 3) {
+                System.out.println("enter id of the expense you want to delete");
+                int id=sc.nextInt();
+                System.out.println("Moving ahead with deletion of expense");
+                expenseService.deleteExpenseById(id);
+                System.out.println("Updated expense list");
+                expenseService.viewExpense();
+                continue;
+
+            } else if (optionChosen==4) {
                 System.out.println("Exiting...");
                 break;
-
             } else {
                 System.out.println("Invalid input");
             }
