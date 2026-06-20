@@ -8,7 +8,8 @@ public class ExpenseService {
         System.out.println("1. Add Expense");
         System.out.println("2. View Expenses");
         System.out.println("3. Delete Expense");
-        System.out.println("4. Exit");
+        System.out.println("4. Search Expense");
+        System.out.println("5. Exit");
         System.out.println("Enter choice");
     }
     public  void addExpense(Expense expense){
@@ -16,13 +17,13 @@ public class ExpenseService {
         System.out.println("Expense Added Successfully");
     }
     public  void viewExpense(){
-        System.out.println("User chose to view expense");
+        System.out.println("fetching the current expense list");
         for(Expense e:expenses){
             System.out.println(e);
         }
     }
-    public void deleteExpenseById(int id){
-        Boolean deleted=false;
+    public boolean deleteExpenseById(int id){
+        boolean deleted=false;
         for(Expense e:expenses){
             if(e.getId()==id){
                 expenses.remove(e);
@@ -30,8 +31,16 @@ public class ExpenseService {
                 break;
             }
         }
-        if(deleted==false){
-            System.out.println("expense with this id doesn't exist");
+        return  deleted;
+    }
+
+    public ArrayList<Expense> searchExpenseByCategory(String category) {
+        ArrayList<Expense> matchingExpense=new ArrayList<>();
+        for(Expense e: expenses){
+            if(e.getCategory().equalsIgnoreCase(category)){
+                matchingExpense.add(e);
+            }
         }
+        return matchingExpense;
     }
 }
