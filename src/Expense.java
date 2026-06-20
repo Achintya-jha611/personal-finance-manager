@@ -55,18 +55,4 @@ public class Expense {
                 ",date='"+date +'\''+
             '}';
     }
-
-
-    /*public static void viewExpense(Expense e){
-        System.out.println("Expense details");
-        String expenseId = String.valueOf(e.getId());
-        String expenseAmount = String.valueOf(e.getAmount());
-        System.out.println("expense id is"+expenseId);
-        System.out.println("expense amount is "+expenseAmount);
-        System.out.println("expense category is "+ e.getCategory());
-        System.out.println("expense description is "+ e.getDescription());
-        System.out.println("expense date is "+ e.getDate());
-
-    }*/
-
 }
