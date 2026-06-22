@@ -19,7 +19,7 @@ public class Main {
         return expense;
     }
     public static boolean askToContinue(Scanner sc){
-        System.out.println("Want to add more expenses?Enter true to continue and false to stop");
+        System.out.println("Want to continue expense management? Enter true to continue and false to stop");
         return sc.nextBoolean();
     }
     public static void main(String[] args) {
@@ -73,6 +73,24 @@ public class Main {
                 }
             }
             else if(optionChosen==5){
+                float amount;
+                int id;
+                System.out.println("Enter the expense id you want to update the amount for");
+                id=sc.nextInt();
+                sc.nextLine();
+                System.out.println("Enter the value you want to update for the expense amount");
+                amount=sc.nextFloat();
+                sc.nextLine();
+                if(expenseService.updateExpenseById(id,amount)){
+                    System.out.println("successfully updated matching expense");
+                    continueExpenseManagement= askToContinue(sc);
+                }
+                else{
+                    System.out.println("could not update expense!");
+                    continueExpenseManagement= askToContinue(sc);
+                }
+            }
+            else if(optionChosen==6){
                 System.out.println("Closing down expense management!");
                 break;
             }

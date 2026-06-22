@@ -6,7 +6,6 @@ public class Expense {
     private String category;
     private String description;
     private String date;
-    Scanner sc=new Scanner(System.in);
 
     public Expense(int id, float amount, String category, String description, String date){
       this.id=id;
@@ -34,8 +33,14 @@ public class Expense {
     public void setId(int id){
         this.id=id;
     }
-    public void setAmount(float amount){
-        this.amount=amount;
+    public boolean setAmount(float amount){
+        if(amount<=0){
+            return false;
+        }
+        else {
+            this.amount = amount;
+            return true;
+        }
     }
     public void setCategory(String category){
         this.category=category;

@@ -9,7 +9,8 @@ public class ExpenseService {
         System.out.println("2. View Expenses");
         System.out.println("3. Delete Expense");
         System.out.println("4. Search Expense");
-        System.out.println("5. Exit");
+        System.out.println("5. Update Expense");
+        System.out.println("6. Exit");
         System.out.println("Enter choice");
     }
     public  void addExpense(Expense expense){
@@ -32,6 +33,24 @@ public class ExpenseService {
             }
         }
         return  deleted;
+    }
+    public boolean updateExpenseById(int id,float amount){
+        boolean updated=false;
+        for(Expense e:expenses){
+            if(e.getId()==id){
+                boolean setNewValue=e.setAmount(amount);
+                if(setNewValue)
+                {
+                    updated=true;
+                    return updated;
+                }
+                else{
+                    System.out.println("invalid amount! couldn't update the amount");
+                    return updated;
+                }
+            }
+        }
+        return  updated;
     }
 
     public ArrayList<Expense> searchExpenseByCategory(String category) {
