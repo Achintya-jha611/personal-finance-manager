@@ -9,6 +9,9 @@ public class Expense {
 
     public Expense(int id, float amount, String category, String description, String date){
       this.id=id;
+      if(amount<=0){
+          throw new IllegalArgumentException("amount cannot be negative");
+      }
       this.amount=amount;
       this.category=category;
       this.description=description;
