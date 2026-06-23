@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -6,8 +7,6 @@ public class Main {
     public static Expense getExpenseFromUser(Scanner sc){
         System.out.println("Enter id:");
         int id = sc.nextInt();
-        System.out.println("Enter Amount:");
-        float amount = sc.nextFloat();
         sc.nextLine();
         System.out.println("Enter Category:");
         String category = sc.nextLine();
@@ -15,8 +14,24 @@ public class Main {
         String description = sc.nextLine();
         System.out.println("Enter Date:");
         String date = sc.nextLine();
-        Expense expense = new Expense(id, amount, category, description, date);
-        return expense;
+        while(true) {
+            try {
+                System.out.println("Enter Amount:");
+                float amount = sc.nextFloat();
+                sc.nextLine();
+                Expense expense = new Expense(id, amount, category, description, date);
+                return expense;
+            }
+            catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                System.out.println("please reenter the amount");
+            }
+            catch (InputMismatchException e){
+                System.out.println(e.getMessage());
+                sc.nextLine();//if in case user enters abc for amt,without this,sc.nextFloat() fail hoga but buffer clear nhi hoga and next loop mei same data aajayega...issliye infinite loop..
+            }
+        }
+
     }
     public static boolean askToContinue(Scanner sc){
         System.out.println("Want to continue expense management? Enter true to continue and false to stop");
