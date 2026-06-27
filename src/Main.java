@@ -5,9 +5,8 @@ import java.util.Scanner;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static Expense getExpenseFromUser(Scanner sc){
-        System.out.println("Enter id:");
-        int id = sc.nextInt();
-        sc.nextLine();
+        //int id = Expense.
+        //sc.nextLine();
         System.out.println("Enter Category:");
         String category = sc.nextLine();
         System.out.println("Enter Description");
@@ -19,7 +18,7 @@ public class Main {
                 System.out.println("Enter Amount:");
                 float amount = sc.nextFloat();
                 sc.nextLine();
-                Expense expense = new Expense(id, amount, category, description, date);
+                Expense expense = new Expense(amount, category, description, date);
                 return expense;
             }
             catch (IllegalArgumentException e) {
@@ -48,6 +47,7 @@ public class Main {
             if (optionChosen == 1) {
                 Expense expense=getExpenseFromUser(sc);
                 expenseService.addExpense(expense);
+                FileService.saveExpenseToFile(expense);
                 continueExpenseManagement= askToContinue(sc);
             }
             else if (optionChosen == 2) {
@@ -106,6 +106,12 @@ public class Main {
                 }
             }
             else if(optionChosen==6){
+                System.out.println("enter the category you want to fetch total expense for");
+                String expenseCategory=sc.nextLine();
+                System.out.println(expenseService.getTotalExpense(expenseCategory));
+                continueExpenseManagement= askToContinue(sc);;
+            }
+            else if(optionChosen==7){
                 System.out.println("Closing down expense management!");
                 break;
             }
