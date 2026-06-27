@@ -10,7 +10,8 @@ public class ExpenseService {
         System.out.println("3. Delete Expense");
         System.out.println("4. Search Expense");
         System.out.println("5. Update Expense");
-        System.out.println("6. Exit");
+        System.out.println("6. Get total expense");
+        System.out.println("7. Exit");
         System.out.println("Enter choice");
     }
     public  void addExpense(Expense expense){
@@ -61,5 +62,22 @@ public class ExpenseService {
             }
         }
         return matchingExpense;
+    }
+    public float getTotalExpense(String category){
+        float totalExpense=0;
+        if(category!=null) {
+            for (Expense e : expenses) {
+                if (category.equalsIgnoreCase(e.getCategory())) {
+                    totalExpense += e.getAmount();
+                }
+            }
+        }
+        else{
+            for (Expense e : expenses) {
+                    totalExpense += e.getAmount();
+                }
+            }
+
+        return totalExpense;
     }
 }
