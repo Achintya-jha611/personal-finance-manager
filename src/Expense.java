@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Expense {
     private int id;
     private float amount;
@@ -15,6 +17,17 @@ public class Expense {
       this.category=category;
       this.description=description;
       this.date=date;
+    }
+    public Expense(int Id,float amount,String category,String description,String date)
+    {
+        this.id=Id;
+        if(amount<=0){
+            throw new IllegalArgumentException("amount cannot be negative");
+        }
+        this.amount=amount;
+        this.category=category;
+        this.description=description;
+        this.date=date;
     }
     public int getId(){
         return this.id;
@@ -69,4 +82,8 @@ public class Expense {
                 description + "," +
                 date;
     }
+    public static void setUpdatedNextId(int updatedNextId){
+        nextId=updatedNextId;
+    }
+
 }

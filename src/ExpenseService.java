@@ -14,6 +14,10 @@ public class ExpenseService {
         System.out.println("7. Exit");
         System.out.println("Enter choice");
     }
+    ExpenseService(){
+        FileService fs = new FileService();
+        expenses = fs.loadExpensesFromFile();
+    }
     public  void addExpense(Expense expense){
         expenses.add(expense);
         System.out.println("Expense Added Successfully");
