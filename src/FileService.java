@@ -3,11 +3,11 @@ import java.util.ArrayList;
 
 public class FileService {
     public static boolean saveExpenseToFile(Expense expense) {
-        try {
-            FileWriter writer = new FileWriter("expenses.txt", true);//append method makes sure ki file close hone k baad next jab data aaye to existing data delete nahi ho
+        try(FileWriter writer = new FileWriter("expenses.txt", true)) {
+            //append method makes sure ki file close hone k baad next jab data aaye to existing data delete nahi ho
             writer.write(expense.toCSV());
             writer.write("\n");//this makes sure next data is added to next line
-            writer.close();//saves the file properly
+           //saves the file properly
             return true;
         } catch (IOException e) {
             System.out.println("Exception encountered");
@@ -18,9 +18,9 @@ public class FileService {
 
         ArrayList<Expense> expenses = new ArrayList<>();
         int maxId=0;
-        try{
-            FileReader reader = new FileReader("expenses.txt");//reads entire file in one go
-            BufferedReader bufferedReader = new BufferedReader(reader);//the read file if we want to read line by line
+        try( BufferedReader bufferedReader = new BufferedReader(new FileReader("expenses.txt"))){
+            //FileReader reader = //reads entire file in one go
+           //the read file if we want to read line by line
             String currentLine;
             while((currentLine = bufferedReader.readLine())!=null) {
                 String[] currentRow = currentLine.split(",");
@@ -36,7 +36,7 @@ public class FileService {
                 Expense e = new Expense(expenseId,expenseAmount,category,description,date);
                 expenses.add(e);
             }
-            bufferedReader.close();
+            //bufferedReader.close();
             Expense.setUpdatedNextId(maxId+1);
             return expenses;
 
