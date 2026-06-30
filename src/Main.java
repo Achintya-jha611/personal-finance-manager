@@ -37,7 +37,8 @@ public class Main {
         return sc.nextBoolean();
     }
     public static void main(String[] args) {
-        ExpenseService expenseService=new ExpenseService();
+        StorageService fs = new FileService();
+        ExpenseService expenseService=new ExpenseService(fs);
         Scanner sc=new Scanner(System.in);
         boolean continueExpenseManagement=true;
         while(continueExpenseManagement) {
@@ -47,7 +48,7 @@ public class Main {
             if (optionChosen == 1) {
                 Expense expense=getExpenseFromUser(sc);
                 expenseService.addExpense(expense);
-                FileService.saveExpenseToFile(expense);
+                fs.saveExpense(expense);
                 continueExpenseManagement= askToContinue(sc);
             }
             else if (optionChosen == 2) {

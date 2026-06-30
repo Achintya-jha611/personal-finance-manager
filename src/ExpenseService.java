@@ -14,9 +14,9 @@ public class ExpenseService {
         System.out.println("7. Exit");
         System.out.println("Enter choice");
     }
-    ExpenseService(){
-        FileService fs = new FileService();
-        expenses = fs.loadExpensesFromFile();
+    ExpenseService(StorageService storageService){
+        //FileService fs = new FileService();
+        expenses = storageService.loadExpenses();
     }
     public  void addExpense(Expense expense){
         expenses.add(expense);
